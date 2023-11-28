@@ -1,0 +1,78 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'java'
+    id 'application'
+}
+
+group = 'me.vopolskiy'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// OVERride dependencies
+configurations.all {
+    resolutionStrategy {
+        force 'org.apache.logging.log4j:log4j-api:2.14.1'
+    }
+}
+
+// SHADING
+// https://docs.gradle.org/current/userguide/shadow_plugin.html
+
+
+dependencies {
+    implementation 'org.springframework:spring-core:5.3.17' {
+        exclude group: 'org.springframework', module: 'spring-jcl'
+    }
+
+    implementation 'org.springframework:spring-context:5.3.17'
+    implementation 'org.springframework:spring-beans:5.3.17'
+    implementation 'org.springframework:spring-web:5.3.17'
+    implementation 'org.springframework:spring-webmvc:5.3.17'
+//    SpringUtils
+    implementation 'org.springframework:spring-jdbc:5.3.17'
+    implementation 'org.springframework:spring-orm:5.3.17'
+    implementation 'org.springframework:spring-webmvc:5.3.17'
+    implementation 'org.projectlombok:lombok:1.18.20'
+//    tomcat
+//    compileOnly 'org.springframework.boot:spring-boot-starter-tomcat'
+//     'org.apache.tomcat.embed:tomcat-embed-core:9.0.52'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+
+
+
+test {
+    useJUnit()
+}
+
+
+// transitive dependencies
+// conflicts
+
+//application.mainClass.set("Test")
+
+
+jar {
+    manifest {
+        attributes("Main-Class": "TestRest")
+    }
+
+    from(configurations.runtimeClasspath.files)
+}
+
+
+//configurations.runtimeClasspath.files.each { println it }
+
+
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '11'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '11'
+}
