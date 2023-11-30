@@ -2,6 +2,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'java'
     id 'application'
+    id 'maven-publish'
 }
 
 group = 'me.vopolskiy'
@@ -23,10 +24,7 @@ configurations.all {
 
 
 dependencies {
-    implementation 'org.springframework:spring-core:5.3.17' {
-        exclude group: 'org.springframework', module: 'spring-jcl'
-    }
-
+    implementation 'org.springframework:spring-core:5.3.17'
     implementation 'org.springframework:spring-context:5.3.17'
     implementation 'org.springframework:spring-beans:5.3.17'
     implementation 'org.springframework:spring-web:5.3.17'
@@ -40,6 +38,9 @@ dependencies {
 //    compileOnly 'org.springframework.boot:spring-boot-starter-tomcat'
 //     'org.apache.tomcat.embed:tomcat-embed-core:9.0.52'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
+    // import kotlinx.cli.*
+    implementation 'org.jetbrains.kotlinx:kotlinx-cli:0.3.2'
 }
 
 
@@ -56,12 +57,18 @@ test {
 //application.mainClass.set("Test")
 
 
+
+
 jar {
     manifest {
         attributes("Main-Class": "TestRest")
     }
 
-    from(configurations.runtimeClasspath.files)
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+    from(configurations.runtimeClasspath.files.collect {
+        it.isDirectory() ? it : zipTree(it)
+    })
 }
 
 
