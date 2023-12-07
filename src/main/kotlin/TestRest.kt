@@ -12,6 +12,14 @@ object TestRest {
         val stringFormat by parser.option(ArgType.Choice(listOf("html", "csv", "pdf"), { it }), shortName = "sf",
             description = "Format as string for output file").default("csv").multiple()
 
+        var test = "test"
+
+        try {
+
+        } catch (e: Exception) {
+            println(e.message)
+        }
+
 //        val verbose by parser.option(ArgType.Boolean, shortName = "v", description = "Enable verbose mode")
 //        val name by parser.argument(ArgType.String, description = "Name of the user")
 
