@@ -45,7 +45,10 @@ class CodeReview {
 
     //    Magic Numbers:
     fun calculateArea(radius: Double): Double {
-        return 3.14 * radius * radius
+        return 3.143423423 * radius * radius
+    }
+    fun calculateArea2(radius: Double): Double {
+        return 3.14 * radius / 2
     }
 
     //    Inefficient use of Data Types:
@@ -54,8 +57,10 @@ class CodeReview {
     }
 
     //    Nullable Types without Null Safety Checks
+    val test: String? = null
+
     fun printLength(str: String?) {
-        println("The length of the string is: ${str.length}")
+        println("The length of the string is: ${str?.length}")
     }
 
     //    Inappropriate Use of Visibility Modifiers:
@@ -64,6 +69,10 @@ class CodeReview {
 
     //    Inefficient String Concatenation in Loops:
     fun concatenate(items: List<String>): String {
+        // list to string
+        items.joinToString(separator = "")
+
+
         var result = ""
         for (item in items) {
             result += item
