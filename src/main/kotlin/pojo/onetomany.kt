@@ -3,7 +3,9 @@ package pojo
 object onetomany {
 
     /**
-    A One-to-Many mapping can be implemented using a Set java collection that does not contain any duplicate element. We already have seen how to map Set collection in hibernate, so if you already learned Set mapping then you are all set to go with one-to-many mapping.
+    A One-to-Many mapping can be implemented using a Set java collection that does not contain any duplicate element.
+    We already have seen how to map Set collection in hibernate, so if you already learned Set mapping then you are all set to
+    go with one-to-many mapping.
 
     create table EMPLOYEE (
     id INT NOT NULL auto_increment,
@@ -21,19 +23,31 @@ object onetomany {
     );
      */
 
-    class Employee(
+
+    data class Employee(
         var id: Int = 0,
         var firstName: String = "",
         var lastName: String = "",
         var salary: Int = 0,
-        var certificates: Set<Any> = mutableSetOf()
-    ) {
-        constructor(fname: String, lname: String, salary: Int) : this(
-            firstName = fname,
-            lastName = lname,
-            salary = salary
-        )
-    }
+        var certificates: List<Certificate>?
+    )
+
+
+    data class  Certificate(
+        val id: Int,
+        val name: String
+    )
+
+    val emp1 = Employee(0, "Iv", "P", 99, null)
+
+
+
+
+
+
+
+
+
 
 
 
