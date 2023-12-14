@@ -8,6 +8,7 @@ fun main(args: Array<String>) {
 //    new InputStreamReader(new FileInputStreamReader(new File("testfile.txt")), "UTF-8")
 
 // Kotlin
-//    File("testfile.txt").reader().forEachLine { println(it) }
+    val reader = File("testfile.txt").reader()
+    reader.forEachLine { println(it) }
 
 }

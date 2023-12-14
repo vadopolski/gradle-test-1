@@ -1,7 +1,6 @@
 [
   {
     "name": {
-      "common": "Aruba",
       "official": "Aruba",
       "native": {
         "nld": {
@@ -36,9 +35,7 @@
         "97"
       ]
     },
-    "capital": [
-      "Oranjestad"
-    ],
+
     "altSpellings": [
       "AW"
     ],

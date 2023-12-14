@@ -15,6 +15,9 @@ data class Country(
 @Serializable
 data class Name(val common: String)
 
+
+
+
 @Serializable
 data class CountryDto(
     val name: String,
@@ -32,7 +35,7 @@ fun main() {
     val json = Json { ignoreUnknownKeys = true }
 
     val countriesJsonString = File("src/main/resources/countries.json").readText()
-    val countries = json.decodeFromString<List<Country>>(countriesJsonString)
+    val countries: List<Country> = json.decodeFromString<List<Country>>(countriesJsonString)
 
     val result = countries
 //        .filter { it.region == "Africa" }
@@ -43,4 +46,18 @@ fun main() {
 
     println(result)
 }
+
+
+/*
+* relational
+* table: Author
+* table: Book
+*
+* Book -> Author1, Author2, Author3
+*
+* kotlin
+*
+*
+*
+* */
 

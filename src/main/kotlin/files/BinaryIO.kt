@@ -7,6 +7,9 @@ import java.io.EOFException
 
 fun main(args: Array<String>) {
 
+//    Java
+//    try (fr: FileReader = new FileReader("testfile.bin");
+
     val di = DataInputStream(FileInputStream("testfile.bin"))
     var si: String
 
@@ -23,7 +26,10 @@ fun main(args: Array<String>) {
     }
 
 
+
     FileInputStream("testfile.bin").use { fis ->
+        throw Exception("Error") // Kotlin doesn't require a catch block
+
         DataInputStream(fis).use { di ->
             var si: String
             while (true) {
@@ -33,23 +39,5 @@ fun main(args: Array<String>) {
 
         }
     }
-
-
-
-
-
-
-
-
-//    Java
-//    try (fr: FileReader = new FileReader("testfile.bin");
-
-
-
-
-
-
-
-
 
 }
